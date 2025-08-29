@@ -1,0 +1,90 @@
+REM Flipper Zero BadUSB Script: Google Snake Game - Serpentine Enhanced Timing (1.7s before first left)
+
+DELAY 1000
+ALT SHIFT l
+DELAY 500
+ENTER
+DELAY 800
+
+STRING Chrome
+DELAY 300
+ENTER
+DELAY 1200
+
+REM Dismiss Chrome dialogs (profile selection, restore tabs)
+ENTER
+DELAY 300
+ENTER
+DELAY 300
+
+STRING https://www.google.com/search?q=snake+game
+ENTER
+DELAY 1500
+
+ENTER
+DELAY 300
+ENTER
+DELAY 300
+
+REPEAT 17
+    TAB
+    DELAY 140
+END
+SPACE
+DELAY 700
+SPACE
+DELAY 400
+ENTER
+DELAY 700
+
+TAB
+DELAY 140
+TAB
+DELAY 140
+TAB
+DELAY 140
+ENTER
+DELAY 200
+
+TAB
+DELAY 140
+TAB
+DELAY 140
+TAB
+DELAY 140
+TAB
+DELAY 140
+ENTER
+DELAY 200
+
+REM Up Arrow after last ENTER
+UPARROW
+DELAY 1000
+
+REM Start downward serpentine pattern: move right then down every 1.7 seconds, 12 repeats per row, 17 rows
+REPEAT 17
+    REPEAT 12
+        RIGHTARROW
+        DELAY 1700
+        DOWNARROW
+        DELAY 50
+    END
+    REM After 12 moves, shift right to the next "column"
+    RIGHTARROW
+    DELAY 200
+END
+
+REM After 17 rows, switch direction and move left in the same pattern
+REPEAT 17
+    REPEAT 12
+        LEFTARROW
+        DELAY 1700
+        DOWNARROW
+        DELAY 50
+    END
+    REM After 12 moves, shift left to the next "column"
+    LEFTARROW
+    DELAY 200
+END
+
+REM End of script
