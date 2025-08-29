@@ -57,34 +57,91 @@ DELAY 140
 ENTER
 DELAY 200
 
-REM Up Arrow after last ENTER
-UPARROW
-DELAY 1000
+REM --- snake_serpentine.txt (Flipper Zero BadUSB) ---
+REM How this works:
+REM 1) Start Google Snake in your browser, click the board so it has focus,
+REM    pick a slow/non-accelerating mode if available.
+REM 2) Put the snake at the top-left, moving RIGHT before you run this.
+REM 3) Tune ROW_MS (time to cross one row) and TURN_PAUSE_MS (settle time).
 
-REM Start downward serpentine pattern: move right then down every 1.7 seconds, 12 repeats per row, 17 rows
-REPEAT 17
-    REPEAT 12
-        RIGHTARROW
-        DELAY 1700
-        DOWNARROW
-        DELAY 50
-    END
-    REM After 12 moves, shift right to the next "column"
-    RIGHTARROW
-    DELAY 200
-END
+DEFAULT_DELAY 50
+REM === Tunables (start here) ===
+REM Typical starting point: 20 steps * ~140ms/step = ~2800ms per row.
+REM Increase ROW_MS if you crash into the wall; decrease if you turn too early.
+REM TURN_PAUSE_MS gives the game a beat after each corner.
+REM (Edit these numbers, not the rest, until it lines up.)
+REM --------------------------------
+REM ROW_MS ≈ time to traverse one full row
+REM TURN_PAUSE_MS ≈ a short pause after each turn
+REM --------------------------------
 
-REM After 17 rows, switch direction and move left in the same pattern
-REPEAT 17
-    REPEAT 12
-        LEFTARROW
-        DELAY 1700
-        DOWNARROW
-        DELAY 50
-    END
-    REM After 12 moves, shift left to the next "column"
-    LEFTARROW
-    DELAY 200
-END
+REM --- Define macros (simple, manual inline since Flipper runs txt) ---
+REM Row RIGHT then turn DOWN
+HOLD RIGHT
+DELAY 2800
+RELEASE RIGHT
+DELAY 120
+DOWN
+DELAY 200
+
+REM Row LEFT then turn DOWN
+HOLD LEFT
+DELAY 2800
+RELEASE LEFT
+DELAY 120
+DOWN
+DELAY 200
+
+REM ====== Repeat the two-row block enough times to cover the board ======
+REM Block 1
+HOLD RIGHT
+DELAY 2800
+RELEASE RIGHT
+DELAY 120
+DOWN
+DELAY 200
+HOLD LEFT
+DELAY 2800
+RELEASE LEFT
+DELAY 120
+DOWN
+DELAY 200
+
+REM Block 2
+HOLD RIGHT
+DELAY 2800
+RELEASE RIGHT
+DELAY 120
+DOWN
+DELAY 200
+HOLD LEFT
+DELAY 2800
+RELEASE LEFT
+DELAY 120
+DOWN
+DELAY 200
+
+REM Block 3
+HOLD RIGHT
+DELAY 2800
+RELEASE RIGHT
+DELAY 120
+DOWN
+DELAY 200
+HOLD LEFT
+DELAY 2800
+RELEASE LEFT
+DELAY 120
+DOWN
+DELAY 200
+
+REM (Copy/paste more “Block” pairs until you’ve got enough rows for your board.
+REM  For many Snake boards ~20 total rows does it—add or remove as needed.)
+
+REM Optional: stop the snake safely by pausing on a long hold at the end.
+HOLD RIGHT
+DELAY 4000
+RELEASE RIGHT
+
 
 REM End of script
