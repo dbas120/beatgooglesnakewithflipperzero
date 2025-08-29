@@ -57,26 +57,6 @@ DELAY 140
 ENTER
 DELAY 200
 
-REM --- snake_serpentine.txt (Flipper Zero BadUSB) ---
-REM How this works:
-REM 1) Start Google Snake in your browser, click the board so it has focus,
-REM    pick a slow/non-accelerating mode if available.
-REM 2) Put the snake at the top-left, moving RIGHT before you run this.
-REM 3) Tune ROW_MS (time to cross one row) and TURN_PAUSE_MS (settle time).
-
-DEFAULT_DELAY 50
-REM === Tunables (start here) ===
-REM Typical starting point: 20 steps * ~140ms/step = ~2800ms per row.
-REM Increase ROW_MS if you crash into the wall; decrease if you turn too early.
-REM TURN_PAUSE_MS gives the game a beat after each corner.
-REM (Edit these numbers, not the rest, until it lines up.)
-REM --------------------------------
-REM ROW_MS ≈ time to traverse one full row
-REM TURN_PAUSE_MS ≈ a short pause after each turn
-REM --------------------------------
-
-REM --- Define macros (simple, manual inline since Flipper runs txt) ---
-REM Row RIGHT then turn DOWN
 HOLD RIGHT
 DELAY 2800
 RELEASE RIGHT
